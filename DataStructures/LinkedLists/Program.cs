@@ -9,33 +9,43 @@
             Console.WriteLine("Inserting...");
             ll.InsertAtHead(1);
             ll.InsertAtTail(3);
-            ll.InsertAtIndex(5, 1); // Insert 5 at index 1
+            //ll.InsertAtIndex(5, 1); // Insert 5 at index 1
+            ll.InsertAtTail(5);
             ll.InsertAtTail(7);
             ll.InsertAtTail(9);
             ll.InsertAtTail(11);
 
             Console.WriteLine(ll.ToString());
-            Console.WriteLine($"Size: {ll.Size()}");
-            Console.WriteLine();
 
-            var t = ll.GetByIndex(5);
-            Console.WriteLine("Value at index 5: " + t);
-            try { t = ll.GetByIndex(7); } catch { Console.WriteLine("Exception caught accessing index 7"); }
-            //Console.WriteLine("Value at index 7: " + t);
-            Console.WriteLine();
-
-            var s = ll.SearchByValue(7);
-            Console.WriteLine("Index of value 7: " + s);            
-            Console.WriteLine();
-
-            Console.WriteLine("Deleting...");
-            ll.DeleteByIndex(2);
-            ll.DeleteByValue(7); // Attempt to delete a value that doesn't exist
-            ll.DeleteByValue(5);
+            ll.Reverse();
 
             Console.WriteLine(ll.ToString());
-            Console.WriteLine($"Size: {ll.Size()}");
-            Console.WriteLine();
+
+            if (false)
+            {
+                Console.WriteLine(ll.ToString());
+                Console.WriteLine($"Size: {ll.Size()}");
+                Console.WriteLine();
+
+                var t = ll.GetByIndex(5);
+                Console.WriteLine("Value at index 5: " + t);
+                try { t = ll.GetByIndex(7); } catch { Console.WriteLine("Exception caught accessing index 7"); }
+                //Console.WriteLine("Value at index 7: " + t);
+                Console.WriteLine();
+
+                var s = ll.SearchByValue(7);
+                Console.WriteLine("Index of value 7: " + s);
+                Console.WriteLine();
+
+                Console.WriteLine("Deleting...");
+                ll.DeleteByIndex(2);
+                ll.DeleteByValue(7); // Attempt to delete a value that doesn't exist
+                ll.DeleteByValue(5);
+
+                Console.WriteLine(ll.ToString());
+                Console.WriteLine($"Size: {ll.Size()}");
+                Console.WriteLine();
+            }
         }
     }
 
@@ -258,6 +268,21 @@
         }
 
         // TODO: Extras => Reverse, Sort, Merge
+
+        public void Reverse()
+        {
+            LinkedListNode<T> prev = null; // marker #1 - behind me
+            var current = _head; // marker #2 - where i'm currently at
+            while(current != null)
+            {
+                var next = current.Next; // marker #3 - in front of me
+                current.Next = prev; // Reverse the link
+                prev = current; // Move prev forward
+                current = next; // Move current forward
+            }
+            
+            _head = prev; // Update the head to the new first node
+        }
 
         /// <summary>
         /// Override of ToString. Print the values of the nodes of the linked list.
