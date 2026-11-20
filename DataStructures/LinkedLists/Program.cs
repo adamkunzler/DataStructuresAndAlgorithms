@@ -16,10 +16,25 @@
             ll.InsertAtTail(11);
 
             Console.WriteLine(ll.ToString());
+            Console.WriteLine();
 
+            Console.WriteLine("Reversed...");
             ll.Reverse();
 
             Console.WriteLine(ll.ToString());
+            Console.WriteLine();
+
+            Console.WriteLine("Sort Ascending...");
+            ll.SortAscending();
+
+            Console.WriteLine(ll.ToString());
+            Console.WriteLine();
+
+            Console.WriteLine("Sort Descending...");
+            ll.SortDescending();
+
+            Console.WriteLine(ll.ToString());
+            Console.WriteLine();
 
             if (false)
             {
@@ -267,8 +282,62 @@
             return count;
         }
 
-        // TODO: Extras => Reverse, Sort, Merge
+        /// <summary>
+        /// Sort the linked list in ascending order (uses selection sort)
+        /// </summary>
+        public void SortAscending()
+        {
+            for(var current = _head; current != null; current = current.Next)
+            {
+                var minNode = current;
 
+                for (var next = current.Next; next != null; next = next.Next)
+                {
+                    if (Comparer<T>.Default.Compare(next.Value, minNode.Value) < 0)
+                    {
+                        minNode = next;
+                    }
+                }
+
+                // Swap values
+                if (!EqualityComparer<T>.Default.Equals(current.Value, minNode.Value))
+                {
+                    var temp = current.Value;
+                    current.Value = minNode.Value;
+                    minNode.Value = temp;
+                }
+            }            
+        }
+
+        /// <summary>
+        /// Sort the linked list in descending order (uses selection sort)
+        /// </summary>
+        public void SortDescending()
+        {
+            for (var current = _head; current != null; current = current.Next)
+            {
+                var maxNode = current;
+                for (var next = current.Next; next != null; next = next.Next)
+                {
+                    if (Comparer<T>.Default.Compare(next.Value, maxNode.Value) > 0)
+                    {
+                        maxNode = next;
+                    }
+                }
+
+                // Swap values
+                if (!EqualityComparer<T>.Default.Equals(current.Value, maxNode.Value))
+                {
+                    var temp = current.Value;
+                    current.Value = maxNode.Value;
+                    maxNode.Value = temp;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reverse the linked list
+        /// </summary>
         public void Reverse()
         {
             LinkedListNode<T> prev = null; // marker #1 - behind me
