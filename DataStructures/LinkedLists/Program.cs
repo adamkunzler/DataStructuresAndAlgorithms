@@ -10,9 +10,23 @@
             ll.InsertAtHead(1);
             ll.InsertAtTail(3);
             ll.InsertAtIndex(5, 1); // Insert 5 at index 1
+            ll.InsertAtTail(7);
+            ll.InsertAtTail(9);
+            ll.InsertAtTail(11);
 
             Console.WriteLine(ll.ToString());
             Console.WriteLine($"Size: {ll.Size()}");
+            Console.WriteLine();
+
+            var t = ll.GetByIndex(5);
+            Console.WriteLine("Value at index 5: " + t);
+            try { t = ll.GetByIndex(7); } catch { Console.WriteLine("Exception caught accessing index 7"); }
+            //Console.WriteLine("Value at index 7: " + t);
+            Console.WriteLine();
+
+            var s = ll.SearchByValue(7);
+            Console.WriteLine("Index of value 7: " + s);            
+            Console.WriteLine();
 
             Console.WriteLine("Deleting...");
             ll.DeleteByIndex(2);
@@ -21,6 +35,7 @@
 
             Console.WriteLine(ll.ToString());
             Console.WriteLine($"Size: {ll.Size()}");
+            Console.WriteLine();
         }
     }
 
@@ -163,11 +178,70 @@
             }
         }
 
-        // TODO: Search - by value
+        /// <summary>
+        /// Return the index of a value or null
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public int? SearchByValue(T value)
+        {
+            if(value == null)
+            {
+                throw new ArgumentNullException(nameof(value), "Value cannot be null.");
+            }
 
-        // TODO: Get - by index
+            var current = _head;
+            var index = 0;
+            while (current != null)
+            {
+                if (current.Value != null && current.Value.Equals(value))
+                {
+                    return index;
+                }
 
-        // TODO: Size/Count 
+                current = current.Next;
+                index++;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get a value from the linked list at a specific index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public T GetByIndex(int index)
+        {
+            if (index < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Index cannot be negative.");
+            }
+
+            if (index == 0)
+            {                
+                return _head.Value;
+            }
+
+            var current = _head;
+            for (int i = 0; i < index; i++)
+            {
+                if (current == null || current.Next == null)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
+                }
+
+                current = current.Next;
+            }
+
+            return current.Value;
+        }
+
+        /// <summary>
+        /// Returns the size of the linked list, e.g. the number of nodes
+        /// </summary>
+        /// <returns></returns>
         public int Size()
         {
             if (_head == null) return 0;
@@ -185,6 +259,10 @@
 
         // TODO: Extras => Reverse, Sort, Merge
 
+        /// <summary>
+        /// Override of ToString. Print the values of the nodes of the linked list.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var current = _head;
