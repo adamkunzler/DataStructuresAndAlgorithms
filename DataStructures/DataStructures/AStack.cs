@@ -46,6 +46,16 @@
             return _stack[_index];
         }
 
+        public bool IsEmpty()
+        {
+            return _index == -1;
+        }
+
+        public int Count()
+        {
+            return _index + 1;
+        }
+
         private void Resize()
         {
             _capacity *= 2;

@@ -36,6 +36,16 @@
             return _stack.GetByIndex(0);
         }
 
+        public bool IsEmpty()
+        {
+            return _stack.Size() == 0;
+        }
+
+        public int Count()
+        {
+            return _stack.Size();
+        }   
+
         public override string ToString()
         {
             if(_stack.Size() == 0)

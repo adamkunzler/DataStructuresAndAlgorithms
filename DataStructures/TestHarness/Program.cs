@@ -1,4 +1,5 @@
-﻿using DS = DataStructures;
+﻿using Algorithms;
+using DS = DataStructures;
 
 namespace LinkedLists
 {
@@ -114,7 +115,19 @@ namespace LinkedLists
             catch (InvalidOperationException ex)
             {
                 Console.WriteLine($"Exception caught: {ex.Message}");
+                Console.WriteLine();
             }
+            
+            var binary = Conversions.IntegerToBinary(11);
+            Console.WriteLine($"Binary of 11: {binary}");
+            Console.WriteLine();
+
+            var infix = "(7 - 8 / 2 / 2) * ((7 - 2) * 3 - 6)";
+            var postfix = Conversions.InfixToPostfix(infix);
+            Console.WriteLine($"Postfix of '{infix}':\n {postfix}");
+            
+            var result = Conversions.EvalPostfix(postfix);
+            Console.WriteLine($"Result: {result}");
 
             Console.WriteLine("-------------------------------------------------------");
             Console.WriteLine();
@@ -156,7 +169,8 @@ namespace LinkedLists
             catch (InvalidOperationException ex)
             {
                 Console.WriteLine($"Exception caught: {ex.Message}");
-            }
+                Console.WriteLine();
+            }            
 
             Console.WriteLine("-------------------------------------------------------");
             Console.WriteLine();

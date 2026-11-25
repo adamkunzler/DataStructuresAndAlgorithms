@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Algorithms/Algorithms.csproj" Id="97c9fd9a-fc27-4030-bcf2-710ee8044d6a" />
   <Project Path="DataStructures/DataStructures.csproj" Id="866eccf4-a926-4dff-bd12-c560d3403a1e" />
   <Project Path="TestHarness/TestHarness.csproj" />
 </Solution>
