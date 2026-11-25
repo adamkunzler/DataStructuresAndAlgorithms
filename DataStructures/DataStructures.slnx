@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="DataStructures/DataStructures.csproj" Id="866eccf4-a926-4dff-bd12-c560d3403a1e" />
-  <Project Path="LinkedLists/LinkedLists.csproj" />
-  <Project Path="Stacks/Stacks.csproj" Id="29e21ad6-98f9-43ed-be5f-4672a6c5aaca" />
+  <Project Path="TestHarness/TestHarness.csproj" />
 </Solution>
